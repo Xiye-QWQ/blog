@@ -1,0 +1,4 @@
+baseURL = 'https://xiye-qwq.github.io/'
+languageCode = 'en-us'
+title = 'Xiye-QWQ的Blog'
+theme = "reimu"
