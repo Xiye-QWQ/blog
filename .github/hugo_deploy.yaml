@@ -27,8 +27,8 @@ jobs:
         - name: Deploy Web
           uses: peaceiris/actions-gh-pages@v4
           with:
-              PERSONAL_TOKEN: ${{ secrets.update }} # 刚刚在上面创建的变量名
-              EXTERNAL_REPOSITORY: xiye-qwq/xiye-qwq.github.io # 如果按照上面的步骤走，则是username/username.github.io第一个仓库名
+              PERSONAL_TOKEN: ${{ secrets.UPDATE }} # 刚刚在上面创建的变量名
+              EXTERNAL_REPOSITORY: Xiye-QWQ/Xiye-QWQ.github.io # 如果按照上面的步骤走，则是username/username.github.io第一个仓库名
               PUBLISH_BRANCH: master
               PUBLISH_DIR: ./public
               commit_message: auto deploy
