@@ -1,35 +1,35 @@
 name: deploy
 
-# 代码提交到main分支时触发github action
 on:
-  push:
-    branches:
-      - main
+    push:
+    workflow_dispatch:
+    schedule:
+        # Runs everyday at 8:00 AM
+        - cron: "0 0 * * *"
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-        - name: Checkout
-          uses: actions/checkout@v4
-          with:
-              fetch-depth: 0
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/[email protected]
+              with:
+                  submodules: true
+                  fetch-depth: 0
 
-        - name: Setup Hugo
-          uses: peaceiris/actions-hugo@v3
-          with:
-              hugo-version: "latest"
-              extended: true
+            - name: Setup Hugo
+              uses: peaceiris/[email protected]
+              with:
+                  hugo-version: "latest"
 
-        - name: Build Web
-          run: hugo -D
+            - name: Build Web
+              run: hugo
 
-        - name: Deploy Web
-          uses: peaceiris/actions-gh-pages@v4
-          with:
-              PERSONAL_TOKEN: ${{ secrets.UPDATE }} # 刚刚在上面创建的变量名
-              EXTERNAL_REPOSITORY: Xiye-QWQ/Xiye-QWQ.github.io # 如果按照上面的步骤走，则是username/username.github.io第一个仓库名
-              PUBLISH_BRANCH: master
-              PUBLISH_DIR: ./public
-              commit_message: auto deploy
-
+            - name: Deploy Web
+              uses: peaceiris/[email protected]
+              with:
+                  PERSONAL_TOKEN: ${{ secrets.UPDATE }}
+                  EXTERNAL_REPOSITORY: Xiye-QWQ/Xiye-QWQ.github.io
+                  PUBLISH_BRANCH: master
+                  PUBLISH_DIR: ./public
+                  commit_message: ${{ github.event.head_commit.message }}
